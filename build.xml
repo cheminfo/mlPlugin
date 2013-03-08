@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="mlPlugin" name="Create Runnable Jar for Project mlPlugin">
+	<taskdef resource="proguard/ant/task.properties" classpath="../library/lib/proguard450b4.jar" />
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="mlPluginJar">
+    	<mkdir dir="jars" />
+        <jar destfile="./jars/mlPlugin-full.jar" filesetmanifest="mergewithoutmain">
+            <fileset dir="bin">
+            	<exclude name="**/test/**" />
+            	<exclude name="**/data/*" />
+            	<exclude name="*/test/*.class" />
+            	<exclude name="**/*.jpg" />
+            	<include name="**/*.class" />
+            	<include name="**/*.js" />
+            	<include name="**/*.txt" />
+            	<include name="plugin.properties" />
+            </fileset>
+        	<zipfileset src="./lib/weka.jar">
+        		<exclude name="META-INF/*.SF"/>
+        		<exclude name="**/*.properties"/>
+            	<exclude name="**/*.jpg" />
+            	<exclude name="**/*.png" />
+            	<exclude name="**/*.gif" />
+        	</zipfileset>
+        </jar>
+    </target>
+	
+	<target name="mlPlugin" depends="mlPluginJar">
+		<proguard>
+			-ignorewarnings -verbose
+			-libraryjars ../library/lib/comm.jar
+			-libraryjars ${java.home}/../Classes/classes.jar
+			-libraryjars ${java.home}/../Classes/ui.jar
+								
+			-injars      jars/mlPlugin-full.jar
+			-outjars     jars/mlPlugin.jar
+								
+			-keep public class org.cheminfo.scripting.* { *; } 
+			-keep public class org.cheminfo.scripting.Utils.* {public *;}
+			-keep public class org.cheminfo.scripting.JFuge.* {public *;}
+			-keep public class org.cheminfo.scripting.JFuge.CoEvolution* {public *;}
+			-keep public class org.cheminfo.scripting.JFuge.FuzzyLogic.* {public *;}
+			-keep public class org.cheminfo.scripting.weka.Classifiers.* {public *;}
+			-keep public class org.cheminfo.scripting.weka.Clusterers.* {public *;}
+			-keep public class org.cheminfo.scripting.weka.Filters.* {public *;}
+			-keep public class weka.core.Summarizable { *;}
+			-keep public class weka.core.RevisionHandler { *;}
+			-keep public class weka.classifiers.trees.J48 {public *;}
+			-keep public class weka.classifiers.functions.MultilayerPerceptron {public *;}
+			-keep public class weka.classifiers.trees.NBTree {public *;}
+			-keep public class weka.classifiers.functions.SMO {public *;}
+			-keep public class weka.core.Instance {public *;}
+			-keep public class weka.core.Instances {public *;}
+			-keep public class weka.clusterers.HierarchicalClusterer  {public *;}
+			-keep public class weka.clusterers.Clusterer  {public *;}
+			-keep public class weka.clusterers.SimpleKMeans  {public *;}
+			-keep public class weka.filters.Filter  {public *;}
+			-keep public class weka.filters.unsupervised.attribute.PrincipalComponents {public *;}
+			
+		</proguard>
+		<copy todir="/usr/local/script/plugins">
+		  <fileset dir="./jars/"
+		           includes="mlPlugin.jar"
+		  />
+		</copy>
+	</target>
+</project>
