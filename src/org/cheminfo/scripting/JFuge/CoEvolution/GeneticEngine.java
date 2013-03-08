@@ -189,7 +189,6 @@ public class GeneticEngine {
         LinkedList<Gene> sorted_pop = (LinkedList<Gene>)population.clone();
         //sort population according to their fitness
         Collections.sort(sorted_pop, new Comparator<Gene>(){
-            @Override
             public int compare(Gene o1, Gene o2){
                 return Double.compare(o1.getFitness(), o1.getFitness());
             }

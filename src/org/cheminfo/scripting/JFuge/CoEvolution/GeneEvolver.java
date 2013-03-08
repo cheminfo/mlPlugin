@@ -33,7 +33,6 @@ public class GeneEvolver implements Callable<LinkedList<Gene>>{
      * @return LinkedList<Gene>: the new generation of a population
      * @throws Exception 
      */
-    @Override
     public LinkedList<Gene> call() throws Exception{
 
         //selects parents for the new generation
