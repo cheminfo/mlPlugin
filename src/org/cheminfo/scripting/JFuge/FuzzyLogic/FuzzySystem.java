@@ -18,6 +18,7 @@ package org.cheminfo.scripting.JFuge.FuzzyLogic;
 
 import java.util.LinkedList;
 import org.cheminfo.scripting.Utils.DataLoader;
+import org.cheminfo.scripting.Utils.Tools;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;

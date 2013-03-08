@@ -17,7 +17,7 @@ public class TestScripting {
 	public static void main(String[] args) {
 		ScriptingInstance interpreter = new ScriptingInstance("jars/");
 		interpreter.setSafePath("./");
-                for(int i = 9; i <= 9; i++){
+                for(int i = 1; i <= 9; i++){
                     System.out.println("====================================================================");
                     String script = getContents(new File("jsexamples/test"+i+".js"));
                     JSONObject result = interpreter.runScript(script);

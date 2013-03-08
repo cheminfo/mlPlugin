@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="mlPlugin" name="Create Runnable Jar for Project mlPlugin">
-	<taskdef resource="proguard/ant/task.properties" classpath="../library/lib/proguard450b4.jar" />
+	<taskdef resource="proguard/ant/task.properties" classpath="lib/proguard450b4.jar" />
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="mlPluginJar">
@@ -29,7 +29,7 @@
 	<target name="mlPlugin" depends="mlPluginJar">
 		<proguard>
 			-ignorewarnings -verbose
-			-libraryjars ../library/lib/comm.jar
+			-libraryjars lib/comm.jar
 			-libraryjars ${java.home}/../Classes/classes.jar
 			-libraryjars ${java.home}/../Classes/ui.jar
 								

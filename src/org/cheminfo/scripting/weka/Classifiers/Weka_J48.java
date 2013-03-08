@@ -72,6 +72,7 @@ public class Weka_J48 extends Function{
         }
         if(getLogLevel()>2)
             this.appendInfo(this.getClass().getName(), "Classifier was successfully created and trained");
+        
         return true;
     }/*end createClassifier*/
 

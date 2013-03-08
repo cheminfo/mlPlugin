@@ -123,6 +123,11 @@ var Weka = {
         var percent = Weka.computePercents(test_instances, distribution);
         result.classificationRate = percent;
         
+        var classes = [];
+        for(var j = 0; j < test_instances.numAttributes(); j++)
+            classes[j] = train_instances.attribute(j).name();
+        result.classes = classes;
+        
         return result;
             
     },/*classifyJ48*/
@@ -249,6 +254,11 @@ var Weka = {
             
         var percent = Weka.computePercents(test_instances, distribution);
         result.classificationRate = percent;
+        
+        var classes = [];
+        for(var j = 0; j < test_instances.numAttributes(); j++)
+            classes[j] = train_instances.attribute(j).name();
+        result.classes = classes;
         
         return result;
     },/*end classifyKNN*/
@@ -416,6 +426,11 @@ var Weka = {
         result.distributionForInstance = distribution;
         result.classificationRate = percent;
         
+        var classes = [];
+        for(var j = 0; j < test_instances.numAttributes(); j++)
+            classes[j] = train_instances.attribute(j).name();
+        result.classes = classes;
+        
         return result;
     },/*end classifyMLP*/
     
@@ -502,6 +517,11 @@ var Weka = {
         
         var percent = Weka.computePercents(test_instances, distribution);
         result.classificationRate = percent;
+        
+        var classes = [];
+        for(var j = 0; j < test_instances.numAttributes(); j++)
+            classes[j] = train_instances.attribute(j).name();
+        result.classes = classes;
         
         return result;
     },/*end classifyNBTree*/
@@ -605,6 +625,11 @@ var Weka = {
                       classificationRate:percent};
         
         //result.percent = computeResults(test_instances, distribution);
+        
+        var classes = [];
+        for(var j = 0; j < test_instances.numAttributes(); j++)
+            classes[j] = train_instances.attribute(j).name();
+        result.classes = classes;
         
         return result;
     },/*end classifySVM*/
@@ -721,6 +746,11 @@ var Weka = {
         if(cluster_instance.length != 0)
             result.clusterInstance = cluster_instance;
         
+        var classes = [];
+        for(var j = 0; j < test_instances.numAttributes(); j++)
+            classes[j] = train_instances.attribute(j).name();
+        result.classes = classes;
+        
         return result;
     },/*end clusterHierarchicalClusterer*/
     
@@ -830,7 +860,7 @@ var Weka = {
             frequency_counts = clusterer.getClusterFrequencyCounts();
         
         var cluster_sizes = [];
-        if(options.getSizes)
+        if(options.getClusterSizes)
             cluster_sizes = clusterer.getClusterSizes();
         //returning of result
         var result = new Object();
@@ -841,6 +871,11 @@ var Weka = {
             result.frequencyCounts = frequency_counts;
         if(cluster_sizes.length != 0)
             result.clusterSizes = cluster_sizes;
+        
+        var classes = [];
+        for(var j = 0; j < test_instances.numAttributes(); j++)
+            classes[j] = train_instances.attribute(j).name();
+        result.classes = classes;
         
         return result;
     },/*end clusterKMeans*/
@@ -919,6 +954,12 @@ var Weka = {
         var filter = Weka_Creator.createPCA();
         filter.createFilter(options);
         var result = {filteredData:filter.useFilter(instances)};
+        
+        var classes = [];
+        for(var j = 0; j < instances.numAttributes(); j++)
+            classes[j] = instances.attribute(j).name();
+        result.classes = classes;
+        
         return result;
         
     },/*end filterPCA*/

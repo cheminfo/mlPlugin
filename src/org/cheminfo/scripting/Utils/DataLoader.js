@@ -50,7 +50,7 @@ var DataLoader = {
      * @return Instances: the data loaded in a Weka readable format
      */
     loadData: function(file_name, is_classification_data){
-    	checkGlobal(file_name);
+        checkGlobal(file_name);
         return Weka_DL.loadData(Global.basedir, Global.basedirkey, file_name, is_classification_data);
     },
     

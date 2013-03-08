@@ -10,20 +10,11 @@
  */
 
 var JFuge = {
-
+    
     createJFuge: function(){
         return JFuge_Java.createJFuge();
     },
     
-    computeResults: function(test_instances, classification){
-        var count = 0;
-        for(var i = 0; i<test_instances.numInstances(); i++){ 
-            if(classification[i] == test_instances.instance(i).classValue())
-                count++;
-        }
-        return 100*count/test_instances.numInstances();
-    },
-	
     /**
      * @function classifyJFuge(train_data, test_data, options);
      * Creates, parametrizes and trains (evolves) a fuzzy system based on the dataset's information. The system may classify new instances.
@@ -139,7 +130,23 @@ var JFuge = {
             result.system = classifier.getFuzzySystem();
         
         result.percent = JFuge.computeResults(test_instances, classify_instance);
+        
+        var classes = [];
+        for(var j = 0; j < test_instances.numAttributes(); j++)
+            classes[j] = train_instances.attribute(j).name();
+        result.classes = classes;
+        
         return result;
+        
+    },
+    
+    computeResults: function(test_instances, classification){
+        var count = 0;
+        for(var i = 0; i<test_instances.numInstances(); i++){ 
+            if(classification[i] == test_instances.instance(i).classValue())
+                count++;
+        }
+        return 100*count/test_instances.numInstances();
     },
     
     parseJFugeOptions: function(options){
@@ -183,8 +190,10 @@ var JFuge = {
              opts[2] = options.datasetName;
          else
              opts[2] = null;
+         
          return opts;
-    } 
+    }
+       
 }
 
 
