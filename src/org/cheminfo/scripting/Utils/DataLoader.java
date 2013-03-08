@@ -69,8 +69,8 @@ public class DataLoader extends Function{
         DataSource ds;
         Instances data;
         //TODO ajouter le controle de fichier
-        String full_filename = SecureFileManager.getValidatedFilename(base_dir, base_dir_key, file_name);
-        if(full_filename==null){System.out.println("failed file search");return null;}
+        file_name = SecureFileManager.getValidatedFilename(base_dir, base_dir_key, file_name);
+        //if(full_filename==null){System.out.println("failed file search");return null;}
         try {
             ds = new DataSource(file_name);
             data = ds.getDataSet();
